@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEPM Question Bank – Module Wise</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161920;
+    --border: #252b38;
+    --accent: #e8a020;
+    --accent2: #4a9eff;
+    --text: #d4dbe8;
+    --muted: #7a8499;
+    --m1: #ff6b6b;
+    --m2: #ffd93d;
+    --m3: #6bcb77;
+    --m4: #4d96ff;
+    --m5: #c77dff;
+    --m6: #ff9f1c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  header {
+    padding: 60px 40px 40px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, #0d0f14 0%, #161b2e 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(232,160,32,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 20%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(74,158,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .header-tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  h1 span { color: var(--accent); }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .stats-bar {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .controls {
+    padding: 20px 40px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-right: 6px;
+  }
+  .filter-btn {
+    padding: 6px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(232,160,32,0.08);
+  }
+
+  main {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .module-section {
+    margin-bottom: 48px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .module-header {
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .module-header:hover { background: rgba(255,255,255,0.02); }
+
+  .module-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .module-number {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    flex-shrink: 0;
+    min-width: 70px;
+  }
+  .module-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    flex: 1;
+  }
+  .module-count {
+    font-size: 12px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.06);
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  .chevron {
+    color: var(--muted);
+    font-size: 14px;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+  .module-section.collapsed .chevron { transform: rotate(-90deg); }
+  .module-section.collapsed .module-body { display: none; }
+
+  .module-body { padding: 0 28px 20px; }
+
+  .year-group { margin-top: 20px; }
+  .year-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .year-badge {
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .q-card {
+    display: flex;
+    gap: 14px;
+    padding: 12px 16px;
+    margin-bottom: 6px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: rgba(255,255,255,0.02);
+    transition: all 0.2s;
+    align-items: flex-start;
+  }
+  .q-card:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: var(--border);
+  }
+  .q-num {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--accent);
+    flex-shrink: 0;
+    padding-top: 2px;
+    min-width: 28px;
+  }
+  .q-text {
+    font-size: 14px;
+    color: var(--text);
+    flex: 1;
+    line-height: 1.6;
+  }
+  .q-meta {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    min-width: 100px;
+  }
+  .marks-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: rgba(232,160,32,0.15);
+    color: var(--accent);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .freq-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: rgba(74,158,255,0.15);
+    color: var(--accent2);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .repeat-notice {
+    font-size: 11px;
+    color: #ffd93d;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Module color themes */
+  .m1 .module-dot { background: var(--m1); }
+  .m1 .module-number { color: var(--m1); opacity: 0.7; }
+  .m2 .module-dot { background: var(--m2); }
+  .m2 .module-number { color: var(--m2); opacity: 0.7; }
+  .m3 .module-dot { background: var(--m3); }
+  .m3 .module-number { color: var(--m3); opacity: 0.7; }
+  .m4 .module-dot { background: var(--m4); }
+  .m4 .module-number { color: var(--m4); opacity: 0.7; }
+  .m5 .module-dot { background: var(--m5); }
+  .m5 .module-number { color: var(--m5); opacity: 0.7; }
+  .m6 .module-dot { background: var(--m6); }
+  .m6 .module-number { color: var(--m6); opacity: 0.7; }
+
+  .hot-tag {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: rgba(255,107,107,0.2);
+    color: #ff6b6b;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 700px) {
+    header, main, .controls { padding: 24px 16px; }
+    .q-meta { min-width: unset; }
+    .stats-bar { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">CSC603 · Semester VI · CSE-AIML</div>
+  <h1>SEPM <span>Question Bank</span></h1>
+  <div class="subtitle">Software Engineering &amp; Project Management — Module-Wise PYQ Analysis</div>
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-num">6</span><span class="stat-label">Modules</span></div>
+    <div class="stat"><span class="stat-num">7</span><span class="stat-label">Papers</span></div>
+    <div class="stat"><span class="stat-num">2023–25</span><span class="stat-label">Years Covered</span></div>
+    <div class="stat"><span class="stat-num">60+</span><span class="stat-label">Unique Questions</span></div>
+  </div>
+</header>
+
+<div class="controls">
+  <span class="filter-label">Jump to:</span>
+  <button class="filter-btn active" onclick="scrollTo('m1')">M1 · Intro &amp; Process</button>
+  <button class="filter-btn" onclick="scrollTo('m2')">M2 · Requirements</button>
+  <button class="filter-btn" onclick="scrollTo('m3')">M3 · Design</button>
+  <button class="filter-btn" onclick="scrollTo('m4')">M4 · Risk &amp; Config</button>
+  <button class="filter-btn" onclick="scrollTo('m5')">M5 · Testing</button>
+  <button class="filter-btn" onclick="scrollTo('m6')">M6 · Project Mgmt</button>
+</div>
+
+<main>
+
+<!-- ═══════════════ MODULE 1 ═══════════════ -->
+<div class="module-section m1" id="m1">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="module-dot"></div>
+    <div class="module-number">Module 1</div>
+    <div class="module-title">Introduction to Software Engineering &amp; Process Models</div>
+    <div class="module-count">15 questions</div>
+    <div class="chevron">▼</div>
+  </div>
+  <div class="module-body">
+
+    <div class="year-group">
+      <div class="year-label">
+        <span class="year-badge" style="background:rgba(255,107,107,0.15);color:#ff6b6b;">🔥 VERY FREQUENT — Appears in ALL papers</span>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q★</div>
+        <div class="q-text">
+          Define Software Engineering and explain different <strong>Umbrella Activities</strong>.
+          <div class="repeat-notice">⚠ Repeated in: Dec 2023, May 2023, Dec 2024 (KT), May 2025, KT paper — 5 times</div>
+        </div>
+        <div class="q-meta"><span class="marks-badge">5–10 M</span><span class="hot-tag">HOT</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q★</div>
+        <div class="q-text">
+          Explain the <strong>Agile Process Model</strong> / Compare Agile and Waterfall/Traditional models.
+          <div class="repeat-notice">⚠ Repeated in: Dec 2023, May 2023, May 2024, May 2025 — 4 times</div>
+        </div>
+        <div class="q-meta"><span class="marks-badge">5–10 M</span><span class="hot-tag">HOT</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">Dec 2023 (QP Code: 10039291)</div>
+      <div class="q-card">
+        <div class="q-num">Q3a</div>
+        <div class="q-text">Describe the <strong>Waterfall Model</strong> and <strong>Incremental Process Model</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2023 (QP Code: 29690)</div>
+      <div class="q-card">
+        <div class="q-num">Q3a</div>
+        <div class="q-text">Describe the <strong>Waterfall Model</strong> and <strong>Evolutionary Process Model</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q4b</div>
+        <div class="q-text">What are the Agile Methodologies? Explain any one of them.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">Dec 2024 (QP Code: 10064710)</div>
+      <div class="q-card">
+        <div class="q-num">Q6c</div>
+        <div class="q-text">Short note: <strong>Software Design Patterns</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2024 (QP Code: 10054902)</div>
+      <div class="q-card">
+        <div class="q-num">Q1b</div>
+        <div class="q-text">Compare <strong>Agile and Traditional</strong> software development models.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q6iii</div>
+        <div class="q-text">Short note: <strong>Scrum Model</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2025 (QP Code: 10080915)</div>
+      <div class="q-card">
+        <div class="q-num">Q1b</div>
+        <div class="q-text">Compare <strong>Agile and Waterfall</strong> models.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q6iii</div>
+        <div class="q-text">Short note: <strong>Kanban Model and Extreme Programming</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">KT Paper (23–24) &amp; QP Paper</div>
+      <div class="q-card">
+        <div class="q-num">Q3a</div>
+        <div class="q-text">Describe the <strong>Waterfall Model</strong> and Incremental Process Model.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q1d</div>
+        <div class="q-text">Explain the <strong>Agile Process Model</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE 2 ═══════════════ -->
+<div class="module-section m2" id="m2">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="module-dot"></div>
+    <div class="module-number">Module 2</div>
+    <div class="module-title">Requirements Analysis &amp; Cost Estimation</div>
+    <div class="module-count">14 questions</div>
+    <div class="chevron">▼</div>
+  </div>
+  <div class="module-body">
+
+    <div class="year-group">
+      <div class="year-label">
+        <span class="year-badge" style="background:rgba(255,217,61,0.15);color:#ffd93d;">🔥 VERY FREQUENT — Appears in ALL papers</span>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q★</div>
+        <div class="q-text">
+          Elaborate the <strong>COCOMO Model</strong> for Cost Estimation. (Also: COCOMO II)
+          <div class="repeat-notice">⚠ Repeated in: Dec 2023, May 2023, Dec 2024, May 2024, May 2025, KT, QP — 7 times</div>
+        </div>
+        <div class="q-meta"><span class="marks-badge">10 M</span><span class="hot-tag">HOT</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q★</div>
+        <div class="q-text">
+          Explain <strong>Functional &amp; Non-Functional Requirements</strong>.
+          <div class="repeat-notice">⚠ Repeated in: Dec 2023, May 2023, KT, QP — 4 times</div>
+        </div>
+        <div class="q-meta"><span class="marks-badge">5 M</span><span class="hot-tag">HOT</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">Dec 2023 (QP Code: 10039291)</div>
+      <div class="q-card">
+        <div class="q-num">Q2a</div>
+        <div class="q-text">Elaborate COCOMO model for Cost Estimation.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q5a</div>
+        <div class="q-text">Develop the <strong>SRS of Hospital Management System</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2023 (QP Code: 29690)</div>
+      <div class="q-card">
+        <div class="q-num">Q5a</div>
+        <div class="q-text">Develop the <strong>SRS of University Management System</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">Dec 2024 (QP Code: 10064710)</div>
+      <div class="q-card">
+        <div class="q-num">Q1c</div>
+        <div class="q-text">What is Cost Estimation? Assume a system for simple student registration (~10,000 LOC). Organization pays Rs 25,000/month. <strong>Compute development effort and development time</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q3a</div>
+        <div class="q-text">Develop <strong>SRS for Hospital Management System</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q5a</div>
+        <div class="q-text">Elaborate <strong>COCOMO Method</strong> of cost estimation.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2024 (QP Code: 10054902)</div>
+      <div class="q-card">
+        <div class="q-num">Q2a</div>
+        <div class="q-text">Importance of <strong>Requirement Analysis</strong>; explain different Requirement Engineering tasks.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q3a</div>
+        <div class="q-text">Prepare <strong>SRS for Railway Reservation System</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2025 (QP Code: 10080915)</div>
+      <div class="q-card">
+        <div class="q-num">Q3a</div>
+        <div class="q-text">Elaborate <strong>COCOMO Method</strong> of cost estimation.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q3b</div>
+        <div class="q-text">Write Test Cases for input box accepting numbers between 1 and 1000 using <strong>Equivalence Partitioning</strong> and <strong>Boundary Value Analysis</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q4a</div>
+        <div class="q-text">Importance of <strong>Requirement Analysis</strong>; explain different Requirement Engineering tasks.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE 3 ═══════════════ -->
+<div class="module-section m3" id="m3">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="module-dot"></div>
+    <div class="module-number">Module 3</div>
+    <div class="module-title">Design Engineering</div>
+    <div class="module-count">10 questions</div>
+    <div class="chevron">▼</div>
+  </div>
+  <div class="module-body">
+
+    <div class="year-group">
+      <div class="year-label">
+        <span class="year-badge" style="background:rgba(107,203,119,0.15);color:#6bcb77;">🔥 FREQUENT</span>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q★</div>
+        <div class="q-text">
+          Explain the <strong>Golden Rules for User Interface Design</strong>.
+          <div class="repeat-notice">⚠ Repeated in: May 2023, May 2024, May 2025, KT — 4 times</div>
+        </div>
+        <div class="q-meta"><span class="marks-badge">5 M</span><span class="hot-tag">HOT</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">Dec 2023 (QP Code: 10039291)</div>
+      <div class="q-card">
+        <div class="q-num">Q4b</div>
+        <div class="q-text">Explain <strong>User Interface Design</strong> in detail with example.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2024 (QP Code: 10054902)</div>
+      <div class="q-card">
+        <div class="q-num">Q4a</div>
+        <div class="q-text">Draw <strong>CFG</strong> and calculate <strong>Cyclomatic Complexity</strong> for the given PDL: if(c1 or c2) do s1; s2; while(c3) else while(c4) s3; s4;</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q4b</div>
+        <div class="q-text">Explain <strong>Software Design Concepts</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2025 (QP Code: 10080915)</div>
+      <div class="q-card">
+        <div class="q-num">Q2a</div>
+        <div class="q-text">Explain <strong>Design Concepts</strong> and elaborate <strong>Architectural Design Styles</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q1a</div>
+        <div class="q-text">What is <strong>Cohesion and Coupling</strong>?</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">KT Paper (QP 23-24)</div>
+      <div class="q-card">
+        <div class="q-num">Q1c</div>
+        <div class="q-text">Explain <strong>Cohesion and Coupling</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q6iii</div>
+        <div class="q-text">Short note: <strong>Software Design Patterns</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">QP Paper (older)</div>
+      <div class="q-card">
+        <div class="q-num">Q4b</div>
+        <div class="q-text">Explain <strong>User Interface Design</strong> in detail with example.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE 4 ═══════════════ -->
+<div class="module-section m4" id="m4">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="module-dot"></div>
+    <div class="module-number">Module 4</div>
+    <div class="module-title">Software Risk, Configuration Management &amp; SQA</div>
+    <div class="module-count">14 questions</div>
+    <div class="chevron">▼</div>
+  </div>
+  <div class="module-body">
+
+    <div class="year-group">
+      <div class="year-label">
+        <span class="year-badge" style="background:rgba(77,150,255,0.15);color:#4d96ff;">🔥 VERY FREQUENT — Appears in ALL papers</span>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q★</div>
+        <div class="q-text">
+          What is <strong>Risk Management</strong>? Discuss <strong>RMMM Plan</strong>. Also: Create a Risk Table for a given project scenario.
+          <div class="repeat-notice">⚠ Repeated in: Dec 2023, May 2023, Dec 2024, May 2024, May 2025 — 5 times</div>
+        </div>
+        <div class="q-meta"><span class="marks-badge">10 M</span><span class="hot-tag">HOT</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q★</div>
+        <div class="q-text">
+          Illustrate the <strong>SCM (Software Configuration Management) Process</strong>.
+          <div class="repeat-notice">⚠ Repeated in: Dec 2023, May 2023, Dec 2024, KT, QP — 5 times</div>
+        </div>
+        <div class="q-meta"><span class="marks-badge">10 M</span><span class="hot-tag">HOT</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q★</div>
+        <div class="q-text">
+          Describe the details of <strong>FTR (Formal Technical Review)</strong> and <strong>Walkthrough</strong>.
+          <div class="repeat-notice">⚠ Repeated in: Dec 2023, May 2023, May 2025, KT, QP — 5 times</div>
+        </div>
+        <div class="q-meta"><span class="marks-badge">5–10 M</span><span class="hot-tag">HOT</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">Dec 2023</div>
+      <div class="q-card">
+        <div class="q-num">Q3b</div>
+        <div class="q-text">What is Risk Management? Discuss <strong>RMMM Plan</strong> for risk management.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q2b</div>
+        <div class="q-text">Illustrate the <strong>SCM process</strong> of Software Quality Management.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2023</div>
+      <div class="q-card">
+        <div class="q-num">Q3b</div>
+        <div class="q-text">Discuss common <strong>Sources of Risk</strong> in IT projects.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">Dec 2024</div>
+      <div class="q-card">
+        <div class="q-num">Q2a</div>
+        <div class="q-text">Discuss different <strong>Categories of Risk</strong>; create a <strong>Risk Table</strong> for a next-gen word processing software project.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q3b</div>
+        <div class="q-text">Discuss <strong>Software Configuration Management</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q4b</div>
+        <div class="q-text">Explain <strong>Software Quality Management</strong> with QA and QC.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q1b</div>
+        <div class="q-text">Explain <strong>Formal Technical Review (FTR)</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2024</div>
+      <div class="q-card">
+        <div class="q-num">Q2b</div>
+        <div class="q-text">Identify any two risks in an <strong>Online Examination System</strong>. Perform risk assessment and prepare RMMM Plan for any one risk.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2025</div>
+      <div class="q-card">
+        <div class="q-num">Q2b</div>
+        <div class="q-text">Discuss different <strong>Categories of Risk</strong>; create a <strong>Risk Table</strong> for a next-gen word processing software project.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q4b</div>
+        <div class="q-text">Explain <strong>Software Change Management</strong> with example.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q1c</div>
+        <div class="q-text">Compare <strong>FTR and Walkthroughs</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE 5 ═══════════════ -->
+<div class="module-section m5" id="m5">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="module-dot"></div>
+    <div class="module-number">Module 5</div>
+    <div class="module-title">Software Testing &amp; Maintenance</div>
+    <div class="module-count">12 questions</div>
+    <div class="chevron">▼</div>
+  </div>
+  <div class="module-body">
+
+    <div class="year-group">
+      <div class="year-label">
+        <span class="year-badge" style="background:rgba(199,125,255,0.15);color:#c77dff;">🔥 VERY FREQUENT — Appears in ALL papers</span>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q★</div>
+        <div class="q-text">
+          Differentiate between <strong>White Box Testing</strong> and <strong>Black Box Testing</strong>.
+          <div class="repeat-notice">⚠ Repeated in: Dec 2023, May 2023 (implied), Dec 2024, KT, QP — 4+ times</div>
+        </div>
+        <div class="q-meta"><span class="marks-badge">5–10 M</span><span class="hot-tag">HOT</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">Dec 2023</div>
+      <div class="q-card">
+        <div class="q-num">Q6b</div>
+        <div class="q-text">Differentiate between <strong>White Box and Black Box Testing</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2023</div>
+      <div class="q-card">
+        <div class="q-num">Q6b</div>
+        <div class="q-text">Explain <strong>Software Reverse Engineering</strong> in details.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">Dec 2024</div>
+      <div class="q-card">
+        <div class="q-num">Q1d</div>
+        <div class="q-text">Differentiate <strong>White Box and Black Box Testing</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q5b</div>
+        <div class="q-text">Explain <strong>Software Maintenance</strong> and different types of maintenance.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q6a</div>
+        <div class="q-text">Short note: <strong>Reverse Engineering Process</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q6b</div>
+        <div class="q-text">Short note: <strong>Unit Testing and Integration Testing</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2024</div>
+      <div class="q-card">
+        <div class="q-num">Q3b</div>
+        <div class="q-text">Explain following testing strategies: <strong>Unit Testing, Integration Testing, Validation Testing, System Testing</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2025</div>
+      <div class="q-card">
+        <div class="q-num">Q6iv</div>
+        <div class="q-text">Short note: <strong>Reverse Engineering and Reengineering</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q6i</div>
+        <div class="q-text">Short note: <strong>Software Quality and Quality Factors</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">QP (older) &amp; KT</div>
+      <div class="q-card">
+        <div class="q-num">Q6b</div>
+        <div class="q-text">Differentiate between <strong>White Box and Black Box Testing</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════ MODULE 6 ═══════════════ -->
+<div class="module-section m6" id="m6">
+  <div class="module-header" onclick="toggle(this)">
+    <div class="module-dot"></div>
+    <div class="module-number">Module 6</div>
+    <div class="module-title">IT Project Management &amp; Project Scheduling</div>
+    <div class="module-count">16 questions</div>
+    <div class="chevron">▼</div>
+  </div>
+  <div class="module-body">
+
+    <div class="year-group">
+      <div class="year-label">
+        <span class="year-badge" style="background:rgba(255,159,28,0.15);color:#ff9f1c;">🔥 VERY FREQUENT — Appears in ALL papers</span>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q★</div>
+        <div class="q-text">
+          Explain <strong>Project Scheduling</strong> and describe <strong>CPM and PERT</strong>.
+          <div class="repeat-notice">⚠ Repeated in: Dec 2023, May 2023, Dec 2024, KT, QP — 5 times</div>
+        </div>
+        <div class="q-meta"><span class="marks-badge">10 M</span><span class="hot-tag">HOT</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q★</div>
+        <div class="q-text">
+          Draw <strong>AON Diagram</strong>, find the <strong>Critical Path</strong>, total float time, list critical &amp; non-critical activities, and total project duration. (Same table: A→2, B→4, C→3, D→2, E→3, F→6, G→5, H→4)
+          <div class="repeat-notice">⚠ Repeated in: May 2024, May 2025, KT 23-24 — 3 times with identical data!</div>
+        </div>
+        <div class="q-meta"><span class="marks-badge">10 M</span><span class="hot-tag">HOT</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q★</div>
+        <div class="q-text">
+          Explain with diagram the <strong>CMM (Capability Maturity Model)</strong>.
+          <div class="repeat-notice">⚠ Repeated in: May 2024, May 2025, KT — 3 times</div>
+        </div>
+        <div class="q-meta"><span class="marks-badge">10 M</span><span class="hot-tag">HOT</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q★</div>
+        <div class="q-text">
+          Explain the <strong>4 P's of Project Management</strong>.
+          <div class="repeat-notice">⚠ Repeated in: Dec 2023, KT, QP — 3 times</div>
+        </div>
+        <div class="q-meta"><span class="marks-badge">5 M</span><span class="hot-tag">HOT</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">Dec 2023</div>
+      <div class="q-card">
+        <div class="q-num">Q1b</div>
+        <div class="q-text">Explain the <strong>4 P's of Project Management</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q4a</div>
+        <div class="q-text">Different phases in <strong>Project Life Cycle</strong> with suitable example.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q6a</div>
+        <div class="q-text">Explain Project Scheduling and describe <strong>CPM and PERT</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2023</div>
+      <div class="q-card">
+        <div class="q-num">Q4a</div>
+        <div class="q-text">Different phases in <strong>Project Life Cycle</strong> with suitable example.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q6a</div>
+        <div class="q-text">Explain Project Scheduling and describe <strong>CPM and PERT</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">Dec 2024</div>
+      <div class="q-card">
+        <div class="q-num">Q2b</div>
+        <div class="q-text">Explain Project Scheduling and describe <strong>CPM and PERT</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q4a</div>
+        <div class="q-text">Discuss <strong>Project Management Techniques</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2024</div>
+      <div class="q-card">
+        <div class="q-num">Q1e</div>
+        <div class="q-text">Explain <strong>W5HH Principle</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q5a</div>
+        <div class="q-text">Explain with diagram <strong>CMM Model</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q5b</div>
+        <div class="q-text">Draw <strong>AON Diagram</strong>, find critical path, total float for each path, list critical/non-critical activities and total duration. (A:2, B:4, C:3, D:2, E:3, F:6, G:5, H:4)</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q6ii</div>
+        <div class="q-text">Short note: <strong>PMBOK Knowledge Areas</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">May 2025</div>
+      <div class="q-card">
+        <div class="q-num">Q5a</div>
+        <div class="q-text">Explain with diagram <strong>CMM Model</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q5b</div>
+        <div class="q-text">Draw <strong>AON Diagram</strong>, find critical path, float times, critical/non-critical activities, total duration. (A:2, B:4, C:3, D:2, E:3, F:6, G:5, H:4)</div>
+        <div class="q-meta"><span class="marks-badge">10 M</span></div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">Q6ii</div>
+        <div class="q-text">Short note: <strong>PMBOK Knowledge Areas</strong>.</div>
+        <div class="q-meta"><span class="marks-badge">5 M</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</main>
+
+<footer>
+  CSC603 · SEPM Question Bank · Compiled from 7 papers (2023–2025) · Mumbai University · CSE-AIML Sem VI
+</footer>
+
+<script>
+function toggle(header) {
+  const section = header.parentElement;
+  section.classList.toggle('collapsed');
+}
+
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
