@@ -7,7 +7,7 @@
 
 ## 🌐 Live Website
 
-**👉 [Open the Question Bank](https://yourusername.github.io/SEPM-Question-Bank/)**
+**👉 [Open the Question Bank]([https://yourusername.github.io/SEPM-Question-Bank/](https://sanskriti2305.github.io/SEPM-Question-Bank-SEM-VI-MU/))**
 
 Browse all PYQs module-wise with HOT topic indicators, year-wise breakdown, and direct links to answer PDFs — no downloading needed.
 
@@ -17,8 +17,8 @@ Browse all PYQs module-wise with HOT topic indicators, year-wise breakdown, and 
 
 ```
 SEPM-Question-Bank/
-├── index.html                                        # Interactive question bank website
-├── README.md                                         # This file
+├── index.html                                        
+├── README.md                                         
 ├── answers/
 │   ├── Sepm_Module1_Complete_Descriptive_Answers.pdf
 │   ├── Sepm_Module2_Complete_Descriptive_Answers.pdf
